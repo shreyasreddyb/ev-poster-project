@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Vehicle Design Analysis - A3 Poster</title>
+    <style>
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .poster {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: #2c3e50;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        /* A3 Size: 297mm x 420mm at 96 DPI = 1123px x 1587px */
+        .poster {
+            width: 1123px;
+            height: 1587px;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 6px solid #60a5fa;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .college-logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            border: 4px solid #60a5fa;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 3px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .header .dept {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .header .course {
+            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 3px;
+        }
+        
+        .header .subtitle {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 5px;
+            color: #fef3c7;
+        }
+        
+        .team-info {
+            background: #eff6ff;
+            padding: 12px 30px;
+            text-align: center;
+            font-size: 11px;
+            color: #1e3a8a;
+            border-bottom: 3px solid #93c5fd;
+            font-weight: 600;
+        }
+
+        .team-members {
+            margin-top: 5px;
+            font-size: 10px;
+            color: #1e40af;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 15px;
+            flex: 1;
+            background: #f8f9fa;
+        }
+        
+        .section {
+            background: white;
+            border: 2px solid #1e3a8a;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 8px 10px;
+            margin: -12px -12px 10px -12px;
+            border-radius: 6px 6px 0 0;
+            font-size: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .section-header .icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+        
+        .section-content {
+            font-size: 9.5px;
+            line-height: 1.35;
+            color: #2c3e50;
+            flex: 1;
+        }
+        
+        .section-image {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin: 6px 0;
+            border: 2px solid #1e3a8a;
+        }
+        
+        .section-content h4 {
+            color: #1e3a8a;
+            font-size: 11px;
+            margin: 6px 0 3px 0;
+            font-weight: bold;
+            border-bottom: 2px solid #60a5fa;
+            padding-bottom: 2px;
+        }
+        
+        .section-content ul {
+            margin-left: 12px;
+            margin-top: 3px;
+        }
+        
+        .section-content li {
+            margin-bottom: 2px;
+            line-height: 1.3;
+        }
+        
+        .section-content p {
+            margin: 3px 0;
+            text-align: justify;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 4px solid #2563eb;
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-size: 9.5px;
+        }
+        
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin: 6px 0;
+        }
+        
+        .color-sample {
+            height: 45px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 4px;
+            color: white;
+            font-size: 8px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            border: 2px solid white;
+        }
+        
+        .control-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin: 6px 0;
+        }
+        
+        .control-item {
+            background: #f8f9fa;
+            padding: 6px;
+            border-radius: 4px;
+            border-left: 3px solid #1e3a8a;
+            font-size: 9px;
+            line-height: 1.3;
+        }
+        
+        .control-item strong {
+            color: #1e3a8a;
+            display: block;
+            margin-bottom: 2px;
+            font-size: 10px;
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 6px 0;
+            gap: 6px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 8px;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 6px;
+            flex: 1;
+            border: 2px solid #2563eb;
+        }
+        
+        .stat-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1e3a8a;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .stat-label {
+            font-size: 8px;
+            color: #1e40af;
+            margin-top: 2px;
+            font-weight: 600;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            margin: 5px 0;
+        }
+
+        .mini-box {
+            background: #eff6ff;
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 9px;
+            border-left: 3px solid #2563eb;
+        }
+
+        .mini-box strong {
+            color: #1e3a8a;
+            display: block;
+            font-size: 9px;
+            margin-bottom: 2px;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 10px 30px;
+            text-align: center;
+            font-size: 9px;
+            border-top: 4px solid #60a5fa;
+        }
+
+        .footer strong {
+            font-size: 10px;
+        }
+
+        .conclusion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin: 8px 0;
+        }
+
+        .conclusion-box {
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            border: 2px solid #2563eb;
+        }
+
+        .conclusion-box h4 {
+            color: #1e3a8a;
+            font-size: 11px;
+            margin-bottom: 4px;
+            border-bottom: 2px solid #60a5fa;
+            padding-bottom: 2px;
+        }
+
+        .conclusion-box p {
+            font-size: 9px;
+            line-height: 1.3;
+        }
+
+        .reference-box {
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+            border: 2px solid #1e3a8a;
+        }
+
+        .reference-box strong {
+            color: #1e3a8a;
+            font-size: 10px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .reference-box p {
+            font-size: 8.5px;
+            margin-top: 3px;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="header">
+            <div class="logo-section">
+                <div class="college-logo">
+    <img src="https://drive.google.com/file/d/1GUzbE5YBJ8nF3IVHe75IvovXO96xS4ma/view?usp=drive_link" alt="DSCE Logo" style="width: 100%; height: 100%; object-fit: contain;">
+</div>
+
+                <div class="header-text">
+                    <h1>Dayananda Sagar College of Engineering</h1>
+                    <div class="dept">Department of Mechanical Engineering</div>
+                    <div class="course">22ME752: INDUSTRIAL DESIGN & ERGONOMICS</div>
+                    <div class="subtitle">Electric Vehicle Design Analysis</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="team-info">
+            <strong>GROUP NO: 11</strong><br>
+            <div class="team-members">
+                <strong>Team Members:</strong> RISHIKESH KUMAR (1DS22IS117) • SANJAY K N (1DS22IS129) • SHIVAM KUMAR (1DS22IS139) • SHREESHA ALEVOOR (1DS22IS144) • SIRISH ARAVINDAKUMAR (1DS22IS159)
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Section 1: Industrial Design -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="icon">🔧</span>
+                    <span>1. Industrial Design</span>
+                </div>
+                <div class="section-content">
+                    <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&h=400&fit=crop" alt="EV Design" class="section-image">
+                    
+                    <h4>Design Philosophy</h4>
+                    <div class="highlight-box">
+                        <strong>Aerodynamic Efficiency:</strong> Streamlined body with Cd 0.20-0.24, reduces drag by 35%, maximizing range.
+                    </div>
+                    
+                    <h4>Key Elements</h4>
+                    <ul>
+                        <li><strong>Minimalist Aesthetic:</strong> Clean lines, flush handles, seamless panels</li>
+                        <li><strong>Closed Front:</strong> No grille—distinctive EV identity</li>
+                        <li><strong>Skateboard Platform:</strong> Low center of gravity</li>
+                        <li><strong>LED Signature:</strong> Unique brand recognition</li>
+                    </ul>
+                    
+                    <h4>Materials</h4>
+                    <div class="mini-grid">
+                        <div class="mini-box">
+                            <strong>Aluminum</strong>
+                            30% lighter
+                        </div>
+                        <div class="mini-box">
+                            <strong>Steel Cage</strong>
+                            High safety
+                        </div>
+                        <div class="mini-box">
+                            <strong>Sustainable</strong>
+                            Vegan leather
+                        </div>
+                        <div class="mini-box">
+                            <strong>Acoustic Glass</strong>
+                            Quiet cabin
+                        </div>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-number">0.22</div>
+                            <div class="stat-label">Drag Coefficient</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">30%</div>
+                            <div class="stat-label">Weight Reduced</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">20%</div>
+                            <div class="stat-label">More Space</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2: Ergonomics -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="icon">👤</span>
+                    <span>2. Ergonomics</span>
+                </div>
+                <div class="section-content">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=400&fit=crop" alt="EV Interior" class="section-image">
+                    
+                    <h4>Seating (SAE J1100)</h4>
+                    <ul>
+                        <li><strong>Adjustment:</strong> 12-way power with lumbar</li>
+                        <li><strong>Backrest:</strong> 23-27° optimal angle</li>
+                        <li><strong>Front Headroom:</strong> 38-40" (965-1015mm)</li>
+                        <li><strong>Front Legroom:</strong> 42" (1067mm)</li>
+                        <li><strong>Rear Legroom:</strong> 35-38" (889-965mm)</li>
+                    </ul>
+                    
+                    <h4>Visibility & Safety</h4>
+                    <div class="mini-grid">
+                        <div class="mini-box">
+                            <strong>A-Pillar</strong>
+                            70-90mm thin at 60-65°
+                        </div>
+                        <div class="mini-box">
+                            <strong>Mirrors</strong>
+                            1100-1200mm height
+                        </div>
+                        <div class="mini-box">
+                            <strong>Dashboard</strong>
+                            180°+ visibility
+                        </div>
+                        <div class="mini-box">
+                            <strong>360° Cameras</strong>
+                            Blind spot monitor
+                        </div>
+                    </div>
+                    
+                    <h4>Accessibility</h4>
+                    <ul>
+                        <li><strong>Entry:</strong> 550-650mm height (5th-95th percentile)</li>
+                        <li><strong>Door:</strong> 70°+ for wheelchair access</li>
+                        <li><strong>Handles:</strong> 950-1050mm positioning</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <strong>Design Range:</strong> Accommodates 5th percentile female to 95th percentile male with 200mm seat travel.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Style & Color -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="icon">🎨</span>
+                    <span>3. Style & Colour</span>
+                </div>
+                <div class="section-content">
+                    <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=800&h=400&fit=crop" alt="EV Colors" class="section-image">
+                    
+                    <h4>Exterior Palette</h4>
+                    <div class="color-palette">
+                        <div class="color-sample" style="background: #1a1a1a;">Midnight</div>
+                        <div class="color-sample" style="background: #f5f5f5; color: #333;">Pearl</div>
+                        <div class="color-sample" style="background: #c0c0c0;">Silver</div>
+                        <div class="color-sample" style="background: #003d82;">Ocean</div>
+                        <div class="color-sample" style="background: #8B0000;">Crimson</div>
+                    </div>
+                    
+                    <h4>Color Coding (ISO 3864)</h4>
+                    <div class="mini-grid">
+                        <div class="mini-box" style="border-left-color: #d32f2f;">
+                            <strong>🔴 RED</strong>
+                            Critical: brake, overheat
+                        </div>
+                        <div class="mini-box" style="border-left-color: #ffa726;">
+                            <strong>🟡 AMBER</strong>
+                            Caution: low battery
+                        </div>
+                        <div class="mini-box" style="border-left-color: #66bb6a;">
+                            <strong>🟢 GREEN</strong>
+                            Active: cruise, eco
+                        </div>
+                        <div class="mini-box" style="border-left-color: #42a5f5;">
+                            <strong>🔵 BLUE</strong>
+                            Info: high beam
+                        </div>
+                    </div>
+                    
+                    <h4>Interior Style</h4>
+                    <ul>
+                        <li><strong>Minimalist:</strong> 70% fewer buttons</li>
+                        <li><strong>Scheme:</strong> Matte black + beige</li>
+                        <li><strong>Ambient:</strong> RGB (64 colors)</li>
+                        <li><strong>Contrast:</strong> 3-4mm stitching</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <strong>Psychology:</strong> White = efficiency (+12% perceived range), Black = luxury, Blue = trust.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 4: Controls & Displays -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="icon">⚙️</span>
+                    <span>4. Controls & Display</span>
+                </div>
+                <div class="section-content">
+                    <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=800&h=400&fit=crop" alt="EV Dashboard" class="section-image">
+                    
+                    <h4>Display Configuration</h4>
+                    <div class="highlight-box">
+                        <strong>Central Screen:</strong> 15-17" landscape, 600-750mm distance, 15-20° angle, 900-1000mm height
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <strong>Digital Cluster:</strong> 12.3" behind wheel, 800-900mm distance
+                    </div>
+                    
+                    <h4>Control Layout</h4>
+                    <div class="control-grid">
+                        <div class="control-item">
+                            <strong>PRIMARY (300-450mm)</strong>
+                            Wheel controls, cruise, volume, voice
+                        </div>
+                        <div class="control-item">
+                            <strong>SECONDARY (450-650mm)</strong>
+                            Touchscreen, climate, nav, hazards
+                        </div>
+                        <div class="control-item">
+                            <strong>DOOR PANELS (≤450mm)</strong>
+                            Windows, mirrors, locks
+                        </div>
+                        <div class="control-item">
+                            <strong>OVERHEAD</strong>
+                            Lights, sunroof, SOS
+                        </div>
+                    </div>
+                    
+                    <h4>Steering Controls</h4>
+                    <ul>
+                        <li><strong>Left:</strong> Cruise, speed adjust</li>
+                        <li><strong>Right:</strong> Volume, voice</li>
+                        <li><strong>Sensors:</strong> Hands detection</li>
+                    </ul>
+                    
+                    <div class="mini-grid">
+                        <div class="mini-box">
+                            <strong>Voice</strong>
+                            95%+ accuracy
+                        </div>
+                        <div class="mini-box">
+                            <strong>Gesture</strong>
+                            Wave, swipe control
+                        </div>
+                    </div>
+
+                    <p><strong>Standards:</strong> 8mm min buttons • Tactile emergency controls • 20mm spacing • Haptic feedback</p>
+                </div>
+            </div>
+            
+            <!-- Section 5: Conclusion -->
+            <div class="section full-width" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
+                <div class="section-header" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);">
+                    <span class="icon">✓</span>
+                    <span>5. Conclusion & Key Findings</span>
+                </div>
+                <div class="section-content">
+                    <div class="conclusion-grid">
+                        <div class="conclusion-box">
+                            <h4>Design Integration</h4>
+                            <p>EVs merge aerodynamic efficiency with aesthetic appeal. Skateboard platform enables superior space optimization. Material innovation achieves 30% weight reduction without compromising safety standards.</p>
+                        </div>
+                        <div class="conclusion-box">
+                            <h4>Human-Centered Design</h4>
+                            <p>SAE J1100 standards ensure 5th-95th percentile accommodation. Flat floor provides 42" front legroom. Reach zone optimization reduces driver distraction by 35%.</p>
+                        </div>
+                        <div class="conclusion-box">
+                            <h4>Digital Interface</h4>
+                            <p>Touchscreen reduces controls by 70%. Voice/gesture represents 40% less manual interaction. ISO 3864 color coding ensures universal safety recognition.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reference-box">
+                        <strong>📚 REFERENCE</strong>
+                        <p>Bhise, V. D. (2012). "Ergonomics in the Automotive Design Process." CRC Press. DOI: 10.1201/b11876. This comprehensive reference covers automotive ergonomics, human factors engineering, driver-vehicle interface design, anthropometric considerations, and industrial design standards applied in modern vehicle development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>Dayananda Sagar College of Engineering</strong> | Department of Mechanical Engineering | Bengaluru, Karnataka<br>
+            <em>Academic Year 2022-26 | Course: 22ME752 - Industrial Design & Ergonomics | Submitted: November 2025</em>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>
